@@ -180,7 +180,7 @@ create table Orden_Mantenimiento (
 /*==============================================================*/
 create table Pedido (
    Pedido_ID            int                  not null,
-   Proveedor_ID         int                  null,
+   Pedido_ProveedorID   int                  null,
    Pedido_Subtotal      decimal(7,2)         null,
    Pedido_Iva           decimal(7,2)         null,
    Pedido_Total         decimal(7,2)         null,
