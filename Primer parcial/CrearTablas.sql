@@ -60,6 +60,8 @@ create table Contrato (
    Contrato_EmpleadoID  int                  null,
    Contrato_TCID        int                  null,
    Contrato_CargoID     int                  null,
+   Contrato_FechInicio  DATE                 null,
+   Contrato_FechFin     DATE                 null,
    constraint PK_CONTRATO primary key (Contrato_ID)
 );
 
