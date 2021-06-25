@@ -1,155 +1,220 @@
-Create table Nacionalidad (
-Nacionalidad_ID int primary key,
-Nacionalidad_Nombre varchar(25)
-);
-Create table Empleado (
-Empleado_ID int primary key,
-Empleado_CI varchar(10),
-Empleado_Nombre varchar(20),
-Empleado_Apellido varchar(30),
-Empleado_Genero varchar(1),
-Empleado_NacionalidadID int,
-Empleado_Direccion varchar(40),
-Empleado_Telefono varchar(10),
-Empleado_FchNacimiento date
+/*==============================================================*/
+/* Table: Articulo                                              */
+/*==============================================================*/
+create table Articulo (
+   Articulo_ID          int                  not null,
+   Articulo_Nombre      varchar(50)          null,
+   Articulo_MarcaID     int                  null,
+   Articulo_CategoriaID int                  null,
+   Articulo_Precio      decimal(7,2)         null,
+   Articulo_Stock       int                  null,
+   constraint PK_ARTICULO primary key (Articulo_ID)
 );
 
-Create table Tipo_Contrato (
-TC_ID int primary key,
-TC_Nombre varchar(20)
+/*==============================================================*/
+/* Table: Articulo_Mantenimiento                                */
+/*==============================================================*/
+create table Articulo_Mantenimiento (
+   AM_ID                int                  not null,
+   AM_MantenimientoID   int                  null,
+   AM_ArticuloID        int                  null,
+   constraint PK_ARTICULO_MANTENIMIENTO primary key (AM_ID)
 );
 
-Create table Cargo (
-Cargo_ID int primary key,
-Cargo_Nombre varchar(20)
+/*==============================================================*/
+/* Table: Cargo                                                 */
+/*==============================================================*/
+create table Cargo (
+   Cargo_ID             int                  not null,
+   Cargo_Nombre         varchar(20)          null,
+   constraint PK_CARGO primary key (Cargo_ID)
 );
 
-Create table Contrato (
-Contrato_ID int primary key,
-Contrato_EmpleadoID int,
-Contrato_TCID int,
-Contrato_CargoID int
+/*==============================================================*/
+/* Table: Categoria                                             */
+/*==============================================================*/
+create table Categoria (
+   Categoria_ID         int                  not null,
+   Categoria_Nombre     varchar(20)          null,
+   constraint PK_CATEGORIA primary key (Categoria_ID)
 );
 
-Create table Categoria (
-Categoria_ID int primary key,
-Categoria_Nombre varchar(20)
+/*==============================================================*/
+/* Table: Cliente                                               */
+/*==============================================================*/
+create table Cliente (
+   Cliente_ID           int                  not null,
+   Cliente_CI           varchar(10)          null,
+   Cliente_Nombre       varchar(10)          null,
+   Cliente_Apellido     varchar(30)          null,
+   Cliente_Direccion    varchar(40)          null,
+   Cliente_Telefono     varchar(10)          null,
+   constraint PK_CLIENTE primary key (Cliente_ID)
 );
 
-
-
-Create table Marca (
-Marca_ID int primary key,
-Marca_Nombre varchar(20)
+/*==============================================================*/
+/* Table: Contrato                                              */
+/*==============================================================*/
+create table Contrato (
+   Contrato_ID          int                  not null,
+   Contrato_EmpleadoID  int                  null,
+   Contrato_TCID        int                  null,
+   Contrato_CargoID     int                  null,
+   constraint PK_CONTRATO primary key (Contrato_ID)
 );
 
-
-Create table Articulo (
-Articulo_ID int primary key,
-Articulo_Nombre varchar(50),
-Articulo_MarcaID int,
-Articulo_CategoriaID int,
-Articulo_Precio decimal(7,2),
-Articulo_Stock int
+/*==============================================================*/
+/* Table: Detalle_Equipo                                        */
+/*==============================================================*/
+create table Detalle_Equipo (
+   DE_ID                int                  not null,
+   DE_EquipoID          int                  null,
+   DE_ArticuloID        int                  null,
+   constraint PK_DETALLE_EQUIPO primary key (DE_ID)
 );
 
-
-Create table Proveedor (
-Proveedor_ID int primary key,
-Proveedor_RUC varchar(13),
-Proveedor_Nombre varchar(30),
-Proveedor_Direccion varchar(40),
-Proveedor_Telefono varchar(10)
+/*==============================================================*/
+/* Table: Empleado                                              */
+/*==============================================================*/
+create table Empleado (
+   Empleado_ID          int                  not null,
+   Empleado_CI          varchar(10)          null,
+   Empleado_Nombre      varchar(20)          null,
+   Empleado_Apellido    varchar(30)          null,
+   Empleado_Genero      varchar(1)           null,
+   Empleado_NacionalidadID int                  null,
+   Empleado_Direccion   varchar(40)          null,
+   Empleado_Telefono    varchar(10)          null,
+   Empleado_FchNacimiento date                 null,
+   constraint PK_EMPLEADO primary key (Empleado_ID)
 );
 
-
-Create table Pedido (
-Pedido_ID int primary key,
-Pedido_ProveedorID int,
-Pedido_Subtotal decimal(7,2),
-Pedido_Iva decimal(7,2),
-Pedido_Total decimal(7,2)
+/*==============================================================*/
+/* Table: Equipo                                                */
+/*==============================================================*/
+create table Equipo (
+   Equipo_ID            int                  not null,
+   Equipo_Serial        varchar(20)          null,
+   Equipo_MesesGarantia int                  null,
+   constraint PK_EQUIPO primary key (Equipo_ID)
 );
 
-Create table Pedido_Detalle (
-PD_ID int primary key,
-PD_PedidoID int,
-PD_ArticuloID int,
-PD_Unidades int,
-PD_PrecioUnitario decimal(7,2),
-PD_Subtotal decimal(7,2)
+/*==============================================================*/
+/* Table: Factura                                               */
+/*==============================================================*/
+create table Factura (
+   Factura_ID           int                  not null,
+   Factura_Numero       int                  null,
+   Factura_Fecha        date                 null,
+   Factura_VendedorID   int                  null,
+   Factura_ClienteID    int                  null,
+   Factura_Subtotal     decimal(7,2)         null,
+   Factura_Iva          decimal(7,2)         null,
+   Factura_Total        decimal(7,2)         null,
+   constraint PK_FACTURA primary key (Factura_ID)
 );
 
-
-Create table Cliente (
-Cliente_ID int primary key,
-Cliente_CI varchar(10),
-Cliente_Nombre varchar(10),
-Cliente_Apellido varchar(30),
-Cliente_Direccion varchar(40),
-Cliente_Telefono varchar(10)
+/*==============================================================*/
+/* Table: Factura_Detalle                                       */
+/*==============================================================*/
+create table Factura_Detalle (
+   FD_ID                int                  not null,
+   FD_FacturaID         int                  null,
+   FD_EquipoID          int                  null,
+   FD_Subtotal          decimal(7,2)         null,
+   constraint PK_FACTURA_DETALLE primary key (FD_ID)
 );
 
-Create table Equipo (
-Equipo_ID int primary key,
-Equipo_Serial varchar(20),
-Equipo_MesesGarantia int
+/*==============================================================*/
+/* Table: Mantenimiento                                         */
+/*==============================================================*/
+create table Mantenimiento (
+   Mantenimiento_ID     int                  not null,
+   Mantenimiento_OrdenID int                  null,
+   Mantenimiento_SerialEquipo varchar(20)          null,
+   Mantenimiento_Condicion varchar(100)         null,
+   Mantenimiento_OrigenEquipo boolean              null,
+   Mantenimiento_Costo  decimal(7,2)         null,
+   constraint PK_MANTENIMIENTO primary key (Mantenimiento_ID)
 );
 
-
-
-Create table Detalle_Equipo (
-DE_ID int primary key,
-DE_EquipoID int,
-DE_ArticuloID int
+/*==============================================================*/
+/* Table: Marca                                                 */
+/*==============================================================*/
+create table Marca (
+   Marca_ID             int                  not null,
+   Marca_Nombre         varchar(20)          null,
+   constraint PK_MARCA primary key (Marca_ID)
 );
 
-
-Create table Factura (
-Factura_ID int primary key,
-Factura_Numero int,
-Factura_Fecha date,
-Factura_VendedorID int,
-Factura_ClienteID int,
-Factura_Subtotal decimal(7,2),
-Factura_Iva decimal(7,2),
-Factura_Total decimal(7,2)
+/*==============================================================*/
+/* Table: Nacionalidad                                          */
+/*==============================================================*/
+create table Nacionalidad (
+   Nacionalidad_ID      int                  not null,
+   Nacionalidad_Nombre  varchar(25)          null,
+   constraint PK_NACIONALIDAD primary key (Nacionalidad_ID)
 );
 
-Create table Factura_Detalle (
-FD_ID int primary key,
-FD_FacturaID int,
-FD_EquipoID int,
-FD_Subtotal decimal(7,2)
+/*==============================================================*/
+/* Table: Orden_Mantenimiento                                   */
+/*==============================================================*/
+create table Orden_Mantenimiento (
+   Orden_ID             int                  not null,
+   Orden_ClienteID      int                  null,
+   Orden_EmpleadoReceptor int                  null,
+   Orden_TecnicoID      int                  null,
+   Orden_FchIngreso     date                 null,
+   Orden_FchSalida      date                 null,
+   Orden_EstadoOrden    varchar(20)          null,
+   Orden_Subtotal       decimal(7,2)         null,
+   Orden_Iva            decimal(7,2)         null,
+   Orden_Total          decimal(7,2)         null,
+   constraint PK_ORDEN_MANTENIMIENTO primary key (Orden_ID)
 );
 
-
-Create table Orden_Mantenimiento (
-Orden_ID int primary key,
-Orden_ClienteID int,
-Orden_EmpleadoReceptor int,
-Orden_TecnicoID int,
-Orden_FchIngreso date,
-Orden_FchSalida date,
-Orden_EstadoOrden varchar(20),
-Orden_Subtotal decimal(7,2),
-Orden_Iva decimal(7,2),
-Orden_Total decimal(7,2)
+/*==============================================================*/
+/* Table: Pedido                                                */
+/*==============================================================*/
+create table Pedido (
+   Pedido_ID            int                  not null,
+   Proveedor_ID         int                  null,
+   Pedido_Subtotal      decimal(7,2)         null,
+   Pedido_Iva           decimal(7,2)         null,
+   Pedido_Total         decimal(7,2)         null,
+   constraint PK_PEDIDO primary key (Pedido_ID)
 );
 
-
-Create table Mantenimiento (
-Mantenimiento_ID int primary key,
-Mantenimiento_OrdenID int,
-Mantenimiento_SerialEquipo varchar(20),
-Mantenimiento_Condicion varchar(100),
-Mantenimiento_OrigenEquipo boolean,
-Mantenimiento_Costo decimal(7,2)
+/*==============================================================*/
+/* Table: Pedido_Detalle                                        */
+/*==============================================================*/
+create table Pedido_Detalle (
+   PD_ID                int                  not null,
+   PD_PedidoID          int                  null,
+   PD_ArticuloID        int                  null,
+   PD_Unidades          int                  null,
+   PD_PrecioUnitario    decimal(7,2)         null,
+   PD_Subtotal          decimal(7,2)         null,
+   constraint PK_PEDIDO_DETALLE primary key (PD_ID)
 );
 
-Create table Articulo_Mantenimiento (
-AM_ID int primary key,
-AM_MantenimientoID int,
-AM_ArticuloID int
+/*==============================================================*/
+/* Table: Proveedor                                             */
+/*==============================================================*/
+create table Proveedor (
+   Proveedor_ID         int                  not null,
+   Proveedor_RUC        varchar(13)          null,
+   Proveedor_Nombre     varchar(30)          null,
+   Proveedor_Direccion  varchar(40)          null,
+   Proveedor_Telefono   varchar(10)          null,
+   constraint PK_PROVEEDOR primary key (Proveedor_ID)
 );
 
+/*==============================================================*/
+/* Table: Tipo_Contrato                                         */
+/*==============================================================*/
+create table Tipo_Contrato (
+   TC_ID                int                  not null,
+   TC_Nombre            varchar(20)          null,
+   constraint PK_TIPO_CONTRATO primary key (TC_ID)
+);
