@@ -12,11 +12,11 @@ Insert into Tipo_Contrato Values(2, 'Temporal');
 Insert into Cargo Values(1, 'Tecnico');
 Insert into Cargo Values(2, 'Cajero');
 
-Insert into Contrato Values(1, 1, 1, 1);
-Insert into Contrato Values(2, 2, 1, 2);
-Insert into Contrato Values(3, 3, 2, 1);
-Insert into Contrato Values(4, 4, 2, 1);
-Insert into Contrato Values(5, 5, 1, 2);
+Insert into Contrato Values(1, 1, 1, 1,'06-02-2019','');
+Insert into Contrato Values(2, 2, 1, 2,'14-06-2018','');
+Insert into Contrato Values(3, 3, 2, 1,'20-04-2021','30-06-2021');
+Insert into Contrato Values(4, 4, 2, 1,'10-02-2021','30-07-2021');
+Insert into Contrato Values(5, 5, 1, 2,'20-01-2017','');
 
 Insert into Categoria Values(1,'Monitor');
 Insert into Categoria Values(2,'Procesador');
