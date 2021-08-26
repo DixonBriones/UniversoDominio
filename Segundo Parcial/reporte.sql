@@ -1,3 +1,5 @@
+/*-Un Ireport de diagramas de barras sobre la cantidad de ventas que ha tenido cada marca.*/
+
 select marca.marca_nombre as Marca,
 sum(articulo.articulo_precio) as total_ventas
 from marca
