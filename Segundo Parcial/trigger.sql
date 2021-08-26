@@ -1,3 +1,8 @@
+/*Un procedimiento almacenado que permita ingresar el nombre del cliente y
+que muestre la cantidad de veces que ha visitado el local 
+para mantenimiento y para compras.*/
+
+
 create or replace function permitirTecnico() returns trigger
 as 
 $permitirTecnico$
